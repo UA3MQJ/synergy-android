@@ -20,12 +20,13 @@
     <link rel="stylesheet" type="text/css" href="ag-grid/dist/theme-fresh.css?ignore=notused12">	
     <link rel="stylesheet" type="text/css" href="style.css">	
     
-	<!-- phonegap -->
+	<!-- phonegap begin -->
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript">
 		app.initialize();
 	</script>
+	<!-- phonegap end -->
 		
     <!-- JavaScript -->
     <script src="angular-1.4.3/angular.js"></script>
@@ -34,10 +35,13 @@
     <script src="ui-router/angular-ui-router.js"></script>
     <script src="ui-navbar/ui-navbar.js"></script>
 	<script src="ag-grid/dist/ag-grid.js?ignore=notused12"></script>
+	<script src="jquery-2.2.3.min.js"></script>
+	
 	
 	<!-- modules -->
     <script src="script.js"></script>
 	
+	<!-- phonegap begin -->
 	<script type="text/javascript" charset="utf-8">
 
 		function onLoad()
@@ -54,11 +58,16 @@
 			}
 		 }
 
-	</script>	
+	</script>
+	<!-- phonegap end-->
 	   
   </head>
 
-  <body ng-controller="MainCtrl" onload="onLoad();">
+	<!-- phonegap begin-->
+	<body ng-controller="MainCtrl" onload="onLoad();">
+	<!-- phonegap end-->
+	<!-- <body ng-controller="MainCtrl"> -->
+  
   <nav class="navbar navbar-default" role="navigation">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -72,15 +81,19 @@
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" collapse="navCollapsed">
-          <ul class="nav navbar-nav">
-              <li class="active">
+          <ul class="nav navbar-nav" data-ng-controller="LoginController">
+              <li data-ng-class="{active: $state.is('account')}">
                   <a href="#/account">Аккаунт</a>
               </li>
-              <li>
-                  <a href="#/login">Вход</a>
+              <li data-ng-class="{active: $state.is('login')}">
+                  <a href="#/login" data-ng-show="visible">Вход</a>
+                  <a href="#/login" data-ng-hide="visible">Выход</a>
               </li>
               <li>
-                  <a href="#" onclick="exitFromApp()">Закрыть</a>
+					<!-- phonegap begin-->
+						<a href="#" onclick="exitFromApp()">Закрыть</a>
+				  	<!-- phonegap end-->
+					<!-- <a href="#">Закрыть</a> -->
               </li>
           </ul>
       </div>

@@ -1,3 +1,14 @@
 ﻿<!-- partials/home.html -->
-<h1>Аккаунт</h1>
-<p>Информация по вашему аккаунту</p>
+<center  data-ng-controller="AccountController">
+<h1 data-ng-show="state">Аккаунт</h1>
+<p data-ng-show="state">Информация по вашему аккаунту:<br><br>
+<label>Логин: </label>{{username}}<br>
+<label>Имя: </label>{{first_name}}<br>
+<label>Фамилия: </label>{{last_name}}<br>
+<br><br>
+<label>Общий Баланс: </label>{{balance}}<br>
+</p>
+
+<p data-ng-hide="state">Авторизуйтесь</p>
+
+</center>

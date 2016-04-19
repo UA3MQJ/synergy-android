@@ -1,3 +1,20 @@
 ﻿<!-- partials/home.html -->
-<h1>Login</h1>
-Ввод имени пользователя и пароля
+<center><h1 data-ng-show="visible">Login</h1>
+<form name="loginForm" data-ng-controller="LoginController"
+     data-ng-submit="login(credentials)" novalidate>
+  <label for="username">Username:</label>
+  <label data-ng-hide="visible">{{userName}}</label><br>
+  <input type="text" id="username"  data-ng-show="visible"
+         data-ng-model="credentials.username"><br>
+  <label for="password" data-ng-show="visible">Password:</label><br>
+  <input type="password" id="password"  data-ng-show="visible"
+         data-ng-model="credentials.password">
+  <p data-ng-show="loginError"><font style="color:red">Login Error</font></p>
+  <p data-ng-hide="loginError"></p>
+
+  <button type="submit" data-ng-show="visible">Login</button>
+
+  <button type="button" data-ng-click="logout()" data-ng-hide="visible">Logout</button>
+  
+</form></center>
+
