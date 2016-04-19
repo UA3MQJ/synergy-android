@@ -157,6 +157,7 @@ app.factory('authService', function($http, $rootScope, AUTH_EVENTS){
 		balance : 0
 	};
 	  	  
+	//http://docs.phonegap.com/en/1.8.0rc1/guide_whitelist_index.md.html#Domain%20Whitelist%20Guide
 	authService.login = function (credentials) {
 		var $promise = $http.post('http://23.95.115.211/login.php', credentials);
 		
