@@ -1,14 +1,67 @@
-﻿<!-- partials/home.html -->
-<center  data-ng-controller="AccountController">
-<h1 data-ng-show="state">Аккаунт</h1>
-<p data-ng-show="state">Информация по вашему аккаунту:<br><br>
-<label>Логин: </label>{{username}}<br>
-<label>Имя: </label>{{first_name}}<br>
-<label>Фамилия: </label>{{last_name}}<br>
-<br><br>
-<label>Общий Баланс: </label>{{balance}}<br>
-</p>
+	<ons-navigator>
+	  <ons-page data-ng-controller="AccountController">
+		<ons-toolbar>
+		  <div class="right">
+			<ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
+		  </div>
+		  <div class="center">Аккаунт!</div>
+		</ons-toolbar>
 
-<p data-ng-hide="state">Авторизуйтесь</p>
-
-</center>
+				<!-- когда залогинены -->
+				<ons-row data-ng-show="connected">
+				  <h4 class="center">Ваши данные:</h4>
+				</ons-row>		
+				<ons-row data-ng-show="connected">
+				  <ons-col width="100px" align="center">E-mail:</ons-col>
+				  <ons-col><input class="textarea" id="ed-mail" readonly></ons-col>
+				</ons-row>
+				<ons-row data-ng-show="connected">
+				  <ons-col width="100px" align="center">Имя:</ons-col>
+				  <ons-col><input class="textarea" id="ed-first-name" readonly></ons-col>
+				</ons-row>
+				<ons-row data-ng-show="connected">
+				  <ons-col width="100px" align="center">Фамилия:</ons-col>
+				  <ons-col><input class="textarea" id="ed-last-name" readonly></ons-col>
+				</ons-row>
+				<ons-row data-ng-show="connected">
+				  <ons-col width="100px" align="center">Баланс:</ons-col>
+				  <ons-col><input class="textarea" id="ed-balance" readonly></ons-col>
+				</ons-row>
+				<ons-row data-ng-show="connected"><br></ons-row>
+				<ons-row data-ng-show="connected">
+					<ons-button modifier="large--cta" class="login-button center" 
+					 data-ng-click="logoutClick()"  style="text-align:center">
+					  Выйти
+					</ons-button>
+				</ons-row>
+		
+				<!-- когда не залогинены -->
+				<ons-row data-ng-hide="connected">
+				  <h4 class="center">Требуется аутентификация</h4>
+				</ons-row>		
+				<ons-row data-ng-hide="connected">
+				  <ons-col>
+						<input type="email"  data-ng-model="username" class="text-input--underbar" placeholder="Email"><br>
+				  </ons-col>
+				</ons-row>
+				<ons-row data-ng-hide="connected">
+				  <ons-col>
+						<input type="password" class="text-input--underbar" placeholder="Password" data-ng-model="pass">
+				  </ons-col>
+				</ons-row>
+				<ons-row data-ng-hide="connected"><br></ons-row>
+				<ons-row data-ng-hide="connected">
+					<ons-button modifier="large--cta" class="login-button" 
+					 data-ng-click="loginClick()" style="text-align:center">
+						Войти
+					</ons-button>
+				</ons-row>	
+				<ons-row data-ng-hide="connected">
+					<ons-button modifier="large--cta" class="login-button" 
+					 data-ng-click="exit()" style="text-align:center">
+						Закрыть
+					</ons-button>
+				</ons-row>	
+	
+	  </ons-page>
+	</ons-navigator>

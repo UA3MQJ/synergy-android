@@ -1,8 +1,7 @@
-﻿<!DOCTYPE html>
-<html lang="ru" ng-app="synergy">
-
-  <head>
-    <meta charset="utf-8" />
+<!DOCTYPE html>
+<html lang="ru" data-ng-app="myApp">
+<head>
+  <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 	
     <meta name="format-detection" content="telephone=no" />
@@ -12,39 +11,46 @@
 	<!--
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 	-->
-	
-    <title>Navbar Demo</title>
-    <!-- Css -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="ui-navbar/ui-navbar.css" />
-    <link rel="stylesheet" type="text/css" href="ag-grid/dist/ag-grid.css?ignore=notused12">
-    <link rel="stylesheet" type="text/css" href="ag-grid/dist/theme-fresh.css?ignore=notused12">	
-    <link rel="stylesheet" type="text/css" href="style.css">	
+  
+  <title>Synergy</title>
+  <link rel="stylesheet" href="styles/app.css"/>
+  <link rel="stylesheet" href="css/onsenui.css">
+  <link rel="stylesheet" href="css/onsen-css-components.css">
+  <!-- <link rel="stylesheet" href="css/onsen-css-components-purple-theme.css"> -->
+  <script src="js/onsenui.js"></script>
+  <script src="js/angular/angular.js"></script>
+  <script src="js/angular-onsenui.js"></script>
+  <script src="app.js"></script>
+ <script>
+    ons.ready(function() {	
+      app.slidingMenu.on('preopen', function() {
+        console.log('preopen');
+      });
+
+      app.slidingMenu.on('postopen', function() {
+        console.log('postopen');
+      });
+
+      app.slidingMenu.on('preclose', function() {
+        console.log('preclose');
+      });
+
+      app.slidingMenu.on('postclose', function() {
+        console.log('postclose');
+      });
+    });
+  </script>
     
-	<!-- phonegap begin -->
+  	<!-- phonegap begin -->
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript">
 		app.initialize();
 	</script>
 	<!-- phonegap end -->
-		
-    <!-- JavaScript -->
-    <script src="angular-1.4.3/angular.js"></script>
-    <script src="angular-1.4.3/angular-resource.js"></script>
-    <script src="ui-bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
-    <script src="ui-router/angular-ui-router.js"></script>
-    <script src="ui-navbar/ui-navbar.js"></script>
-	<script src="ag-grid/dist/ag-grid.js?ignore=notused12"></script>
-	<!-- <script src="jquery-2.2.3.min.js"></script> -->
 	
-	
-	<!-- modules -->
-    <script src="script.js"></script>
-	
-	<!-- phonegap begin -->
+		<!-- phonegap begin -->
 	<script type="text/javascript" charset="utf-8">
-
 		function onLoad()
 		{
 			  document.addEventListener("deviceready", onDeviceReady, true);
@@ -52,57 +58,21 @@
 	
 		function exitFromApp()
 		 {
-			if(navigator.app){
-					navigator.app.exitApp();
+			if(navigator.myApp){
+					navigator.myApp.exitApp();
 			}else if(navigator.device){
 					navigator.device.exitApp();
 			}
 		 }
+	</script>  
 
-	</script>
-	<!-- phonegap end-->
-	   
-  </head>
+	
+</head>
+<body ng-controller="MainCtrl" onload="onLoad();">
+	<!-- icons https://fortawesome.github.io/Font-Awesome/icons/ -->
 
-	<!-- phonegap begin-->
-	<body ng-controller="MainCtrl" onload="onLoad();">
-	<!-- phonegap end-->
-	<!-- <body ng-controller="MainCtrl"> -->
-  
-  <nav class="navbar navbar-default" role="navigation">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-          <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Synergy</a>
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" collapse="navCollapsed">
-          <ul class="nav navbar-nav" data-ng-controller="LoginController">
-              <li data-ng-class="{active: $state.is('account')}">
-                  <a href="#/account">Аккаунт</a>
-              </li>
-              <li data-ng-class="{active: $state.is('login')}">
-                  <a href="#/login" data-ng-show="visible">Вход</a>
-                  <a href="#/login" data-ng-hide="visible">Выход</a>
-              </li>
-              <li>
-					<!-- phonegap begin-->
-						<a href="#" onclick="exitFromApp()">Закрыть</a>
-				  	<!-- phonegap end-->
-					<!-- <a href="#">Закрыть</a> -->
-              </li>
-          </ul>
-      </div>
-      <!-- /.navbar-collapse -->
-  </nav>
+  <ons-sliding-menu var="app.slidingMenu" menu-page="menu.html" main-page="account.html" side="right" type="overlay" max-slide-distance="200px">
+  </ons-sliding-menu>
 
-  <div ui-view="" class=""></div>
-
-  </body>
-
+</body>
 </html>

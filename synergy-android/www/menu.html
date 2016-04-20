@@ -1,0 +1,37 @@
+<ons-page style="background-color: white">
+      <ons-list>
+        <ons-list-item
+          modifier="tappable" class="list__item__line-height"
+          data-ng-click="app.slidingMenu.setMainPage('account.html', {closeMenu: true})">
+          <div class="left">
+            <ons-icon icon="fa-home" class="list__item__icon"></ons-icon>
+          </div>
+          <div class="center">
+            Аккаунт
+          </div>
+        </ons-list-item>
+        <ons-list-item
+          modifier="tappable" class="list__item__line-height"
+          data-ng-click="app.slidingMenu.setMainPage('messages.html', {closeMenu: true})">
+          <div class="left">
+            <ons-icon icon="fa-envelope-o" class="list__item__icon"></ons-icon>
+          </div>
+          <div class="center">
+            Сообщения
+          </div>
+        </ons-list-item>
+		
+        <ons-list-item
+          modifier="tappable" class="list__item__line-height"
+		  data-ng-controller="AccountController"
+          data-ng-click="exit()">
+          <div class="left">
+            <ons-icon icon="fa-close" class="list__item__icon"></ons-icon>
+          </div>
+          <div class="center">
+            Выход
+          </div>
+        </ons-list-item>		
+      </ons-list>
+    </ons-page>
+	
